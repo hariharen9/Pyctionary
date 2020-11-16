@@ -1,14 +1,14 @@
 import json 
 import difflib 
 from difflib import get_close_matches as cm
-data = json.load(open("data.json"))
+data = json.load(open("dict.json"))
 
 def translate(w):
     if w in data:
         return data[w]
     elif len(cm(w, data.keys())) > 0:
         ans = cm(w, data.keys())[0]
-        yn = input(f"Did you mean {ans} instead? Enter Y if yes, or N if no: ").capitalize()
+        yn = input(f"Did you mean {ans} instead? Enter Y (yes), or N (no): ").capitalize()
         if yn == "Y":
             return data[cm(w, data.keys())[0]]
         elif yn == "N":
